@@ -35,7 +35,75 @@ body{
   padding-left: 20px;
   padding-right: 20px ;
 }
-/* .App{
+
+/* MyButton */
+
+.MyButton {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  font-size: 18px;
+
+  white-space: nowrap; /*버튼 안에 있는 글자가 잘려서 두줄이 되지않게 해주는 속성 */
+  font-family: "Nanum Pen Script";
+
+}
+
+.MyButton_default{
+  background-color: #ececec;
+  color: black;
+}
+
+.MyButton_positive{  
+  background-color: #64c964;
+  color: white;
+}
+
+.MyButton_negative{
+  background-color: #fd565f;
+  color: white;
+}
+
+/* Header */
+header{
+  padding-top: 20px ;
+  padding-bottom: 20px;
+  display: flex; /*<div>를 가로로 배열해줌*/
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+header > div{
+  display: flex;
+}
+
+header .head_text {
+  width:50%;
+  font-size: 25px;
+  justify-content: center;
+}
+
+header .head_btn_left{
+  width: 25%;
+  justify-content: start;
+}
+
+header .head_btn_right{
+  width: 25%;
+  justify-content: end;
+}
+
+header button{
+  font-family: "Nanum Pen Script";
+}
+
+/* .App{               
   padding: 20px;
 
   font-family: 'Nanum Pen Script', cursive;
