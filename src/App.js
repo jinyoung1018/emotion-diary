@@ -1,3 +1,5 @@
+import React,{ useReducer, useRef } from 'react';
+
 
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
@@ -6,7 +8,6 @@ import Home from './pages/Home';
 import New from './pages/New';
 import Edit from './pages/Edit';
 import Diary from './pages/Diary';
-import { useReducer, useRef } from 'react';
 
 const reducer = (state,action) => {
   let newState = [];
@@ -15,10 +16,7 @@ const reducer = (state,action) => {
       return action.data;
     }
     case 'CREATE': {
-      const newItem = {
-        ...action.data
-      };
-      newState = [newItem, ...state];
+      newState = [action.data, ...state];
       break;
     }
     case 'REMOVE' : {
@@ -33,11 +31,43 @@ const reducer = (state,action) => {
       return state;
   }
   return newState;
-}
+};
+
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
+
+const dummyData = [
+  {
+    id : 1,
+    emoiton: 1,
+    content: "오늘의 일기 1번",
+    date: 1688537569686,
+  },
+  {
+    id : 2,
+    emoiton: 2,
+    content: "오늘의 일기 2번",
+    date: 1688537569687,
+  },
+  {
+    id : 3,
+    emoiton: 3,
+    content: "오늘의 일기 3번",
+    date: 1688537569688,
+  },
+  {
+    id : 4,
+    emoiton: 4,
+    content: "오늘의 일기 4번",
+    date: 1688537569689,
+  },
+];
 
 function App() {
 
-  const [data,dispatch] = useReducer(reducer,[])
+  const [data,dispatch] = useReducer(reducer,dummyData);
+
+  console.log(new Date().getTime())
 
   const dataId = useRef(0);
 
@@ -52,10 +82,28 @@ function App() {
       },
     });
     dataId.current += 1;
-  }
+  };
+
+  const onRemove = (targetId)=>{
+    dispatch({type:"REMOVE",targetId});
+  };
+
+  const onEdit = (targetId,date,content,emotion)=>{
+    dispatch({
+      type: "EDIT",
+      data: {
+        id: targetId,
+        date: new Date(date).getTime(),
+        content,
+        emotion,
+      },
+    });
+    
+  };
 
   return (
-    
+   <DiaryStateContext.Provider value={data}>
+    <DiaryDispatchContext.Provider value={{onCreate,onEdit,onRemove}}>
     <BrowserRouter>
       <div className="App">
        
@@ -68,7 +116,9 @@ function App() {
       
       </div>
     </BrowserRouter>
-  )
+    </DiaryDispatchContext.Provider>
+    </DiaryStateContext.Provider> 
+  );
     
 }
 
