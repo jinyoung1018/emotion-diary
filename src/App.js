@@ -110,7 +110,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home></Home>}></Route>
           <Route path='/new' element={<New></New>}></Route>
-          <Route path='/edit' element={<Edit />}></Route>
+          <Route path='/edit/:id' element={<Edit />}></Route>
           <Route path='/diary/:id' element={<Diary></Diary>}></Route>
         </Routes>
       
