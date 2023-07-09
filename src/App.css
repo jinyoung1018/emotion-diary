@@ -235,6 +235,23 @@ DiaryEditor */
   /* 아이템과 아이템 사이의 갭 설정 */
 }
 
+.DiaryEditor textarea{
+  font-family: 'Nanum Pen Script';
+  font-size: 20px;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 200px;
+  resize: vertical;
+  /* 가로로 사이즈를 늘릴 수 없게 */
+
+  border: none;
+  border-radius: 5px;
+  background-color:  #ececec;
+
+  padding: 20px;
+}
+
 /* EmotionItem */
 
 .EmotionItem{
