@@ -12,6 +12,11 @@ const Home = () =>{
     const [curDate,setCurDtate] = useState(new Date()); //날짜를 저장하는 스테이트
     const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}`;
 
+    useEffect(()=>{
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = `감정 일기장 `;
+    },[]);
+
     useEffect(()=> {
 
         if(diaryList.length >= 1){
